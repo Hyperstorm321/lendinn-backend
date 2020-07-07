@@ -16,12 +16,12 @@ class CreateLandlordsTable extends Migration
         Schema::create('landlords', function (Blueprint $table) {
             $table->id('landlord_id');
             $table->bigInteger('user_id')->unsigned();
-            $table->string('agency_name');
+            $table->string('agency_name')->nullable();
             $table->integer('membership_year');
             $table->boolean('is_deleted')->default(false);
             
-            $table->bigInteger('created_by')->unsigned();
-            $table->bigInteger('updated_by')->unsigned();
+            $table->bigInteger('created_by')->unsigned()->nullable();
+            $table->bigInteger('updated_by')->unsigned()->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('user_id')->on('users');
