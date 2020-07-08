@@ -15,23 +15,23 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id('user_id');
-            // $table->string('username', 20)->unique;
+           // $table->string('username', 20)->unique()->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
 
             $table->string('first_name', 50);
-            $table->string('middle_name', 50);
+            $table->string('middle_name', 50)->nullable();
             $table->string('last_name', 50);
-            $table->string('extension_name', 10);
-            $table->string('detailed_address');
-            $table->bigInteger('region_id')->unsigned();
-            $table->bigInteger('province_id')->unsigned();
-            $table->bigInteger('city_id')->unsigned();
-            $table->bigInteger('barangay_id')->unsigned();
-            $table->bigInteger('postal_code_id')->unsigned();
-            $table->string('photo_src');
+            $table->string('extension_name', 10)->nullable();
+            $table->string('detailed_address')->nullable();
+            $table->bigInteger('region_id')->unsigned()->nullable();
+            $table->bigInteger('province_id')->unsigned()->nullable();
+            $table->bigInteger('city_id')->unsigned()->nullable();
+            $table->bigInteger('barangay_id')->unsigned()->nullable();
+            $table->bigInteger('postal_code_id')->unsigned()->nullable();
+            $table->string('photo_src')->nullable();
             $table->boolean('is_landlord')->default(false);
             $table->boolean('is_deleted')->default(false);
 
