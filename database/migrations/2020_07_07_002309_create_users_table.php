@@ -36,8 +36,8 @@ class CreateUsersTable extends Migration
             $table->boolean('is_deleted')->default(false);
 
 
-            $table->bigInteger('created_by')->unsigned();
-            $table->bigInteger('updated_by')->unsigned();
+            // $table->bigInteger('created_by')->unsigned()->nullable();
+            // $table->bigInteger('updated_by')->unsigned()->nullable();
             $table->timestamps();
 
             $table->foreign('region_id')->references('region_id')->on('regions');
