@@ -22,3 +22,6 @@ Route::get('/useraccounts', 'UserAccountController@get');
 Route::get('/useraccounts/{id}', 'UserAccountController@individual'); 
 Route::get('/usersproperties', 'HomePageController@get');
 Route::get('/myproperties/{id}', 'HomePageController@myProperties');
+
+// Reports
+Route::get('/list_of_properties_owned/{user_id}', 'ReportController@listOfPropertiesOwned');
