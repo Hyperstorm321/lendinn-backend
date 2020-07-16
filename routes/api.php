@@ -19,5 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/useraccounts', 'UserAccountController@get'); 
+Route::get('/useraccounts/{id}', 'UserAccountController@individual'); 
 Route::get('/usersproperties', 'HomePageController@get');
 Route::get('/myproperties/{id}', 'HomePageController@myProperties');

@@ -10,4 +10,8 @@ class UserAccountController extends Controller
         return response()->json(User::get());
     }
 
+    public function individual($id){
+        return response()->json(User::where('user_id',$id)->get());
+    }
+
 }
