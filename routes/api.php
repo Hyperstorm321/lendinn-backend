@@ -24,3 +24,4 @@ Route::get('/myproperties/{id}', 'HomePageController@myProperties');
 
 // Reports
 Route::get('/list_of_properties_owned/{user_id}', 'ReportController@listOfPropertiesOwned');
+Route::get('/list_of_properties_owned/landlord/{landlord_id}', 'ReportController@listOfPropertiesOwnedLandlord');

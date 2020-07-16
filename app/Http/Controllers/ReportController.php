@@ -11,4 +11,9 @@ class ReportController extends Controller
         $properties = DB::select('EXEC proc_list_of_properties_owned @user_id = ?', array($user_id));
         return response()->json($properties);
     }
+
+    public function listOfPropertiesOwnedLandlord($landlord_id){
+        $properties = DB::select('EXEC proc_list_of_properties_owned_landlord @landlord_id = ?', array($landlord_id));
+        return response()->json($properties);
+    }
 }
