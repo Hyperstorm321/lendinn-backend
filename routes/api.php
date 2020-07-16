@@ -21,3 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/useraccounts', 'UserAccountController@get'); 
 Route::get('/usersproperties', 'HomePageController@get');
 Route::get('/myproperties/{id}', 'HomePageController@myProperties');
+
+// Reports
+Route::get('/list_of_properties_owned/{user_id}', 'ReportController@listOfPropertiesOwned');
