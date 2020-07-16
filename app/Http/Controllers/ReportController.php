@@ -28,4 +28,40 @@ class ReportController extends Controller
 
         return response()->json($properties);
     }
+
+    public function rentedPropertiesInAMonthReport($landlord_id, $year, $month){
+        $properties = DB::select('
+                        EXEC proc_sold_properties_in_a_month 
+                              @landlord_id = ?
+                            , @selling_type = ?
+                            , @year = ?
+                            , @month = ?', 
+                            array($landlord_id, 'RENT', $year, $month));
+
+        return response()->json($properties);
+    }
+
+    public function top10HighestRentedPropertiesByCityInAYear($city, $year){
+        $properties = DB::select('
+                        EXEC proc_top_properties_by_city_in_a_year 
+                              @top = ?
+                            , @city = ?
+                            , @selling_type = ?
+                            , @year = ?', 
+                            array(10, $city, 'RENT', $year));
+
+        return response()->json($properties);
+    }
+
+    public function top10HighestSoldPropertiesByCityInAYear($city, $year){
+        $properties = DB::select('
+                        EXEC proc_top_properties_by_city_in_a_year 
+                              @top = ?
+                            , @city = ?
+                            , @selling_type = ?
+                            , @year = ?', 
+                            array(10, $city, 'BUY', $year));
+
+        return response()->json($properties);
+    }
 }
