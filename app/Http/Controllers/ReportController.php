@@ -7,13 +7,13 @@ use DB;
 
 class ReportController extends Controller
 {
-    public function listOfPropertiesOwned($user_id){
-        $properties = DB::select('EXEC proc_list_of_properties_owned @user_id = ?', array($user_id));
+    public function listOfRentedAndBoughtProperties($user_id){
+        $properties = DB::select('EXEC proc_list_of_rented_and_bought_properties @user_id = ?', array($user_id));
         return response()->json($properties);
     }
 
-    public function listOfPropertiesOwnedLandlord($landlord_id){
-        $properties = DB::select('EXEC proc_list_of_properties_owned_landlord @landlord_id = ?', array($landlord_id));
+    public function listOfOwnedProperties($landlord_id){
+        $properties = DB::select('EXEC proc_list_of_owned_properties @landlord_id = ?', array($landlord_id));
         return response()->json($properties);
     }
 
@@ -41,26 +41,26 @@ class ReportController extends Controller
         return response()->json($properties);
     }
 
-    public function top10HighestRentedPropertiesByCityInAYear($city, $year){
+    public function top5HighestRentedPropertiesByCityInAYear($city, $year){
         $properties = DB::select('
                         EXEC proc_top_properties_by_city_in_a_year 
                               @top = ?
                             , @city = ?
                             , @selling_type = ?
                             , @year = ?', 
-                            array(10, $city, 'RENT', $year));
+                            array(5, $city, 'RENT', $year));
 
         return response()->json($properties);
     }
 
-    public function top10HighestSoldPropertiesByCityInAYear($city, $year){
+    public function top5HighestSoldPropertiesByCityInAYear($city, $year){
         $properties = DB::select('
                         EXEC proc_top_properties_by_city_in_a_year 
                               @top = ?
                             , @city = ?
                             , @selling_type = ?
                             , @year = ?', 
-                            array(10, $city, 'BUY', $year));
+                            array(5, $city, 'BUY', $year));
 
         return response()->json($properties);
     }

@@ -24,9 +24,9 @@ Route::get('/usersproperties', 'HomePageController@get');
 Route::get('/myproperties/{id}', 'HomePageController@myProperties');
 
 // Reports
-Route::get('/list_of_properties_owned/{user_id}', 'ReportController@listOfPropertiesOwned');
-Route::get('/landlord/list_of_properties_owned/{landlord_id}', 'ReportController@listOfPropertiesOwnedLandlord');
+Route::get('/list_of_rented_and_bought_properties/{user_id}', 'ReportController@listOfRentedAndBoughtProperties');
+Route::get('/top_5_highest_rented_properties_by_city_in_a_year/{city}/{year}', 'ReportController@top5HighestRentedPropertiesByCityInAYear');
+Route::get('/top_5_highest_sold_properties_by_city_in_a_year/{city}/{year}', 'ReportController@top5HighestSoldPropertiesByCityInAYear');
+Route::get('/landlord/list_of_owned_properties/{landlord_id}', 'ReportController@listOfOwnedProperties');
 Route::get('/landlord/sold_properties_in_a_month/{landlord_id}/{year}/{month}', 'ReportController@soldPropertiesInAMonthReport');
 Route::get('/landlord/rented_properties_in_a_month/{landlord_id}/{year}/{month}', 'ReportController@rentedPropertiesInAMonthReport');
-Route::get('/landlord/top_10_highest_rented_properties_by_city_in_a_year/{city}/{year}', 'ReportController@top10HighestRentedPropertiesByCityInAYear');
-Route::get('/landlord/top_10_highest_sold_properties_by_city_in_a_year/{city}/{year}', 'ReportController@top10HighestSoldPropertiesByCityInAYear');

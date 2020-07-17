@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateListOfPropertiesOwnedProcedure extends Migration
+class CreateListOfRentedAndBoughtPropertiesProcedure extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CreateListOfPropertiesOwnedProcedure extends Migration
     public function up()
     {
         DB::unprepared("
-            CREATE PROCEDURE proc_list_of_properties_owned
+            CREATE PROCEDURE proc_list_of_rented_and_bought_properties
                 @user_id INT
             AS
             BEGIN
@@ -50,6 +50,6 @@ class CreateListOfPropertiesOwnedProcedure extends Migration
      */
     public function down()
     {
-        DB::unprepared('DROP PROCEDURE proc_list_of_properties_owned');
+        DB::unprepared('DROP PROCEDURE proc_list_of_rented_and_bought_properties');
     }
 }

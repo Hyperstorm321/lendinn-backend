@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateListOfPropertiesOwnedLandlordProcedure extends Migration
+class CreateListOfOwnedPropertiesProcedure extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CreateListOfPropertiesOwnedLandlordProcedure extends Migration
     public function up()
     {
         DB::unprepared("
-            CREATE PROCEDURE proc_list_of_properties_owned_landlord
+            CREATE PROCEDURE proc_list_of_owned_properties
                 @landlord_id INT
             AS
             BEGIN
@@ -38,6 +38,7 @@ class CreateListOfPropertiesOwnedLandlordProcedure extends Migration
                                         FOR XML PATH(''), TYPE).value('.', 'VARCHAR(MAX)'), 1, 1, '')
                     , ci.city
                     , pr.detailed_address
+                    , pr.date_added
             
                 FROM properties pr
                 INNER JOIN property_types prt			ON pr.property_type_id = prt.property_type_id
@@ -45,7 +46,8 @@ class CreateListOfPropertiesOwnedLandlordProcedure extends Migration
             
                 WHERE pr.landlord_id = @landlord_id
             
-                ORDER BY prt.property_type ASC,
+                ORDER BY pr.date_added DESC,
+                        prt.property_type ASC,
                         ci.city ASC,
                         pr.name ASC
             END
@@ -59,6 +61,6 @@ class CreateListOfPropertiesOwnedLandlordProcedure extends Migration
      */
     public function down()
     {
-        DB::unprepared('DROP PROCEDURE proc_list_of_properties_owned_landlord');
+        DB::unprepared('DROP PROCEDURE proc_list_of_owned_properties');
     }
 }
